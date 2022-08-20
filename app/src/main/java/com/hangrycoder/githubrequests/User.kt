@@ -1,10 +1,12 @@
 package com.hangrycoder.githubrequests
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+//@JsonClass(generateAdapter = true)
 data class User(
-    @SerializedName("avatar_url")
+    @Json(name = "avatar_url")
     val avatarUrl: String? = null,
-    @SerializedName("login")
+    @Json(name = "login")
     val name: String? = null
 )

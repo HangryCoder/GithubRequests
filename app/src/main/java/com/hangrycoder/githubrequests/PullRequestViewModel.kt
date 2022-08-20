@@ -1,5 +1,6 @@
 package com.hangrycoder.githubrequests
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,10 +23,11 @@ class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel
             _closedPullRequests.postValue(ApiState.Loading)
             when (val response = repository.getPullRequests("closed")) {
                 is NetworkResponse.Success -> {
-                    _closedPullRequests.postValue(ApiState.Success(response.body))
+                    Log.e("ViewModel","response ${response.body}")
+                    //_closedPullRequests.postValue(ApiState.Success(response.body))
                 }
                 else -> {
-                    _closedPullRequests.postValue(ApiState.Error(response.errorData))
+                   // _closedPullRequests.postValue(ApiState.Error())
                 }
             }
         }

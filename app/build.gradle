@@ -53,8 +53,14 @@ dependencies {
 
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    def gson_version = "2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
+    def moshi_converter_version = "2.9.0"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
+
+    def moshi_version = "1.13.0"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+
+    def moshi_adapter_version = "1.12.0"
+    implementation "com.squareup.moshi:moshi-adapters:$moshi_adapter_version"
 
     def logging_interceptor_version = "4.2.1"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"

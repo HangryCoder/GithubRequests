@@ -1,12 +1,14 @@
 package com.hangrycoder.githubrequests
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+//@JsonClass(generateAdapter = true)
 data class PullRequest(
     val title: String? = null,
     val user: User? = null,
-    @SerializedName("created_at")
+    @Json(name = "created_at")
     val createdAt: String? = null,
-    @SerializedName("closed_at")
+    @Json(name = "closed_at")
     val closedAt: String? = null
 )
