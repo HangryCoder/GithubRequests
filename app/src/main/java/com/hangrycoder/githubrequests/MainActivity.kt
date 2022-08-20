@@ -12,9 +12,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val adapter = PullRequestAdapter()
 
-    /*  private val remoteRepository: RemoteRepository by lazy {
-          RemoteRepository(ApiClient.getClient().create(GithubApi::class.java))
-      }*/
     private val viewModel: PullRequestViewModel by viewModels {
         PullRequestViewModelFactory(
             RemoteRepository(ApiClient.getClient().create(GithubApi::class.java))
@@ -40,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             when (response) {
                 is ApiState.Success -> {
                     val pullRequests = response.data
-                    Log.e("TAG", "fetchClosedPullRequests: $pullRequests")
+                    Log.e("TAG", "fetchClosedPullRequests: ${pullRequests.size}")
                     adapter.pullRequests = pullRequests
                 }
                 is ApiState.Loading -> {
