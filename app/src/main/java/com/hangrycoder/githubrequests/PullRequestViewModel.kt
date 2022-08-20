@@ -23,11 +23,17 @@ class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel
             _closedPullRequests.postValue(ApiState.Loading)
             when (val response = repository.getPullRequests("closed")) {
                 is NetworkResponse.Success -> {
-                    Log.e("ViewModel","response ${response.body}")
-                    //_closedPullRequests.postValue(ApiState.Success(response.body))
+                    // Log.e("ViewModel","response ${response.body}")
+                    _closedPullRequests.postValue(ApiState.Success(response.body))
                 }
-                else -> {
-                   // _closedPullRequests.postValue(ApiState.Error())
+                is NetworkResponse.ApiError -> {
+
+                }
+                is NetworkResponse.NetworkError -> {
+
+                }
+                is NetworkResponse.UnknownError -> {
+                   // _closedPullRequests.postValue(ApiState.Error(response))
                 }
             }
         }

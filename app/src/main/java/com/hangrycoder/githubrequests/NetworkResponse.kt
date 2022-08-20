@@ -19,7 +19,7 @@ sealed class NetworkResponse<out T : Any, out U : Any> {
     data class NetworkError(val error: IOException) : NetworkResponse<Nothing, Nothing>()
 
     /**
-     * For example, json parsing error
+     * Json parsing error
      */
     data class UnknownError(val error: Throwable?) : NetworkResponse<Nothing, Nothing>()
 }

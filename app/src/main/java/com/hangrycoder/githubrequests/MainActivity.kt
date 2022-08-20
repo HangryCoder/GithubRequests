@@ -9,9 +9,10 @@ import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-  /*  private val remoteRepository: RemoteRepository by lazy {
-        RemoteRepository(ApiClient.getClient().create(GithubApi::class.java))
-    }*/
+
+    /*  private val remoteRepository: RemoteRepository by lazy {
+          RemoteRepository(ApiClient.getClient().create(GithubApi::class.java))
+      }*/
     private val viewModel: PullRequestViewModel by viewModels {
         PullRequestViewModelFactory(
             RemoteRepository(ApiClient.getClient().create(GithubApi::class.java))
