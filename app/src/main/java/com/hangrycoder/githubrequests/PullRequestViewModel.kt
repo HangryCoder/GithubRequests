@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel() {
@@ -17,7 +18,7 @@ class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel
 
 
     fun getClosedPullRequests() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _closedPullRequests.postValue(ApiState.Loading)
             when (val response = repository.getPullRequests("closed")) {
                 is NetworkResponse.Success -> {
