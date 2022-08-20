@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 class PullRequestAdapter : RecyclerView.Adapter<PullRequestAdapter.PullRequestViewHolder>() {
 
     var pullRequests: List<PullRequest>? = null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestViewHolder {
         val view = LayoutInflater.from(parent.context)
