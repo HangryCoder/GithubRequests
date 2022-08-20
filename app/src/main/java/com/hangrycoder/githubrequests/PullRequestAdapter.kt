@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class PullRequestAdapter : RecyclerView.Adapter<PullRequestAdapter.PullRequestViewHolder>() {
 
@@ -27,7 +28,11 @@ class PullRequestAdapter : RecyclerView.Adapter<PullRequestAdapter.PullRequestVi
             authorNameTextView.text = "Author ${pullRequest?.user?.name}"
             titleTextView.text = pullRequest?.title
             createdAtTextView.text = "Created at ${pullRequest?.createdAt}"
-            createdAtTextView.text = "Closed at ${pullRequest?.closedAt}"
+            closedAtTextView.text = "Closed at ${pullRequest?.closedAt}"
+
+            Glide.with(authorImageView.context)
+                .load(pullRequest?.user?.avatarUrl)
+                .into(authorImageView)
         }
     }
 
