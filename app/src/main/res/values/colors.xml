@@ -10,4 +10,5 @@
     <color name="divider_color">#d9d9d9</color>
     <color name="card_background">#2c3037</color>
     <color name="date_label_color">#bbbbbb</color>
+    <color name="placeholder_icon">#4e5259</color>
 </resources>

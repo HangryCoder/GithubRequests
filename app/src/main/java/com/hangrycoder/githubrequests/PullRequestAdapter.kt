@@ -13,12 +13,6 @@ import com.bumptech.glide.Glide
 class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
     PagingDataAdapter<PullRequest, PullRequestAdapter.PullRequestViewHolder>(diffCallback) {
 
-    /*   var pullRequests: List<PullRequest>? = null
-           set(value) {
-               field = value
-               notifyDataSetChanged()
-           }*/
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_pull_request_item, parent, false)
@@ -36,11 +30,10 @@ class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
             Glide.with(authorImageView.context)
                 .load(pullRequest?.user?.avatarUrl)
                 .circleCrop()
+                .placeholder(R.drawable.avatar_placeholder)
                 .into(authorImageView)
         }
     }
-
-    // override fun getItemCount(): Int = pullRequests?.size ?: 0
 
     inner class PullRequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val authorNameTextView: AppCompatTextView
