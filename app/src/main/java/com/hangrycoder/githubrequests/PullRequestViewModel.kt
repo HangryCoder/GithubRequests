@@ -16,12 +16,14 @@ class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel
         _closedPullRequests
     }
 
-    fun getClosedPullRequests() {
-        val pullRequests: Flow<PagingData<PullRequest>> =
-            Pager(config = PagingConfig(20), pagingSourceFactory = {
-                repository.getPullRequests("closed")
-            }).flow.cachedIn(viewModelScope)
-    }
+    val pullRequests: Flow<PagingData<PullRequest>> =
+        Pager(config = PagingConfig(20), pagingSourceFactory = {
+            repository.getPullRequests("closed")
+        }).flow.cachedIn(viewModelScope)
+
+//    fun getClosedPullRequests() {
+//
+//    }
 
 
     /* fun getClosedPullRequests() {
