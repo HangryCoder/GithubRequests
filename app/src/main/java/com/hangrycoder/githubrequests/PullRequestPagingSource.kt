@@ -21,6 +21,7 @@ class PullRequestPagingSource(
             networkStatusLiveData.value = ApiState.Loading
         }
 
+        //Need to change this logic!
         val response = service.getPullRequests(query, nextPageNumber)
 
         when (response) {
@@ -35,7 +36,7 @@ class PullRequestPagingSource(
             }
             is NetworkResponse.NetworkError -> {
                 val error = response.error
-               // networkStatusLiveData.value = ApiState.NetworkError(error)
+                // networkStatusLiveData.value = ApiState.NetworkError(error)
                 return LoadResult.Error(error)
             }
             is NetworkResponse.ApiError -> {
@@ -44,7 +45,7 @@ class PullRequestPagingSource(
             }
             is NetworkResponse.UnknownError -> {
                 val error = response.error
-               // networkStatusLiveData.value = ApiState.UnknownError(error)
+                // networkStatusLiveData.value = ApiState.UnknownError(error)
                 return LoadResult.Error(error!!)
             }
         }
