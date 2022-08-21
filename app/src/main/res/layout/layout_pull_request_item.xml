@@ -25,7 +25,6 @@
         android:layout_width="@dimen/user_profile_image"
         android:layout_height="@dimen/user_profile_image"
         android:layout_marginTop="@dimen/dp_16"
-        android:background="@color/black"
         app:layout_constraintStart_toStartOf="@id/pull_request_title"
         app:layout_constraintTop_toBottomOf="@id/pull_request_title" />
 
