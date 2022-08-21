@@ -13,11 +13,11 @@ import com.bumptech.glide.Glide
 class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
     PagingDataAdapter<PullRequest, PullRequestAdapter.PullRequestViewHolder>(diffCallback) {
 
- /*   var pullRequests: List<PullRequest>? = null
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }*/
+    /*   var pullRequests: List<PullRequest>? = null
+           set(value) {
+               field = value
+               notifyDataSetChanged()
+           }*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -28,10 +28,10 @@ class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
     override fun onBindViewHolder(holder: PullRequestViewHolder, position: Int) {
         val pullRequest = getItem(position)//pullRequests?.get(position)
         with(holder) {
-            authorNameTextView.text = "Author ${pullRequest?.user?.name}"
+            authorNameTextView.text = pullRequest?.user?.name
             titleTextView.text = pullRequest?.title
-            createdAtTextView.text = "Created at ${pullRequest?.createdAt}"
-            closedAtTextView.text = "Closed at ${pullRequest?.closedAt}"
+            createdAtTextView.text = pullRequest?.createdAt
+            closedAtTextView.text = pullRequest?.closedAt
 
             Glide.with(authorImageView.context)
                 .load(pullRequest?.user?.avatarUrl)
@@ -39,7 +39,7 @@ class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
         }
     }
 
-   // override fun getItemCount(): Int = pullRequests?.size ?: 0
+    // override fun getItemCount(): Int = pullRequests?.size ?: 0
 
     inner class PullRequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val authorNameTextView: AppCompatTextView
@@ -53,8 +53,8 @@ class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
                 authorNameTextView = findViewById(R.id.pull_request_user_name)
                 authorImageView = findViewById(R.id.pull_request_user_image)
                 titleTextView = findViewById(R.id.pull_request_title)
-                createdAtTextView = findViewById(R.id.pull_request_created_at)
-                closedAtTextView = findViewById(R.id.pull_request_closed_at)
+                createdAtTextView = findViewById(R.id.created_date)
+                closedAtTextView = findViewById(R.id.closed_date)
             }
         }
     }
