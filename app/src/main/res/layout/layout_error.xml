@@ -8,48 +8,41 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/error_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"
-        app:srcCompat="@drawable/ic_network_error_icon" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_server_error" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/error_title"
+        android:id="@+id/error_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_16"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline"
-        tools:text="@string/no_internet_connection" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/error_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_8"
+        android:fontFamily="@font/inter"
+        android:text="@string/error_message"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/label_color"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/error_title"
-        tools:text="@string/no_internet_description" />
+        app:layout_constraintTop_toBottomOf="@id/guideline" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/try_again_button"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_16"
+        android:background="?attr/colorPrimaryVariant"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/try_again"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/error_description" />
+        app:layout_constraintTop_toBottomOf="@id/error_message" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

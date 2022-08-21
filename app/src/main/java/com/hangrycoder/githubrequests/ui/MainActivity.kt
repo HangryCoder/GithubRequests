@@ -1,11 +1,13 @@
 package com.hangrycoder.githubrequests.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import com.hangrycoder.githubrequests.ApiState
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
 import com.hangrycoder.githubrequests.utils.PullRequestComparator
@@ -35,9 +37,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initialSetup()
+    }
 
-        fetchClosedPullRequests()
+    private fun initialSetup() {
         setupRecyclerView()
+        fetchClosedPullRequests()
+        paginationLoadListener()
     }
 
     private fun setupRecyclerView() {
@@ -53,35 +59,33 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        /*  viewModel.getNetworkStatus().observe(this) {
+              when (it) {
+                  is ApiState.Loading -> {
+                      binding.progressBar.isVisible = true
+                  }
+                  is ApiState.Success -> {
+                      Log.e("TAG", "Network Status: Success")
+                      binding.progressBar.isVisible = false
+                  }
+                  is ApiState.NetworkError -> {
+                      Log.e("TAG", "Network Status: Network Error ")
+                      binding.progressBar.isVisible = false
+                  }
+                  is ApiState.ServerError -> {
+                      Log.e("TAG", "ServerError Status: Server Error ")
+                      binding.progressBar.isVisible = false
+                  }
+              }
+          }*/
+    }
+
+    private fun paginationLoadListener() {
         lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest { loadState ->
                 binding.progressBar.isVisible = loadState.refresh is LoadState.Loading
-               // binding.errorLayout.root.isVisible = loadState.refresh is LoadState.Error
+                binding.errorLayout.root.isVisible = loadState.refresh is LoadState.Error
             }
         }
-
-        /* viewModel.getNetworkStatus().observe(this) {
-             when (it) {
-                 is ApiState.Loading -> {
-                     binding.progressBar.isVisible = true
-                 }
-                 is ApiState.Success -> {
-                     Log.e("TAG", "Network Status: Success")
-                     binding.progressBar.isVisible = false
-                 }
-                 is ApiState.NetworkError -> {
-                     Log.e("TAG", "Network Status: Network Error ${it.error}")
-                     binding.progressBar.isVisible = false
-                 }
-                 is ApiState.ServerError -> {
-                     Log.e("TAG", "ServerError Status: Server Error ${it.error}")
-                     binding.progressBar.isVisible = false
-                 }
-                 is ApiState.UnknownError -> {
-                     Log.e("TAG", "Unknown Status: Unknown Error ${it.error}")
-                     binding.progressBar.isVisible = false
-                 }
-             }
-         }*/
     }
 }

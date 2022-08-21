@@ -9,5 +9,5 @@ interface ApiService {
     suspend fun getPullRequests(
         @Query("state") state: String,
         @Query("page") page: Int
-    ): NetworkResponse<List<PullRequest>, Any>
+    ): List<PullRequest>
 }
