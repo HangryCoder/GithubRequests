@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
+import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
+import com.hangrycoder.githubrequests.utils.PullRequestComparator
+import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
 import com.hangrycoder.githubrequests.networking.ApiClient
 import com.hangrycoder.githubrequests.networking.ApiService

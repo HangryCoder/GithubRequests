@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.LoadStateItemBinding
 
 class LoaderStateAdapter : LoadStateAdapter<LoaderStateAdapter.LoadStateViewHolder>() {

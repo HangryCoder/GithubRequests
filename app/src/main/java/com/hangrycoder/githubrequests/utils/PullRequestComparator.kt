@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.utils
 
 import androidx.recyclerview.widget.DiffUtil
 import com.hangrycoder.githubrequests.models.PullRequest
