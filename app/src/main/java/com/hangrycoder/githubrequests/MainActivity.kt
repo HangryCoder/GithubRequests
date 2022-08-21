@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.collectLatest
 
@@ -39,6 +41,10 @@ class MainActivity : AppCompatActivity() {
             viewModel.pullRequests.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
+
+           /* adapter.loadStateFlow.collectLatest { loadStates ->
+                binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
+            }*/
         }
 
         /* viewModel.getNetworkStatus().observe(this) {
