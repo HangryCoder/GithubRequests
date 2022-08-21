@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        val divider = SpaceItemDecoration(32)
+        val divider = SpaceItemDecoration(resources.getInteger(R.integer.divider_space))
         binding.recyclerView.adapter = adapter.withLoadStateFooter(footer = LoaderStateAdapter())
         binding.recyclerView.addItemDecoration(divider)
     }
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest { loadState ->
                 binding.progressBar.isVisible = loadState.refresh is LoadState.Loading
-                binding.errorLayout.root.isVisible = loadState.refresh is LoadState.Error
+               // binding.errorLayout.root.isVisible = loadState.refresh is LoadState.Error
             }
         }
 
