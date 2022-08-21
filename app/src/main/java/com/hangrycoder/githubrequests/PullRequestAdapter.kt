@@ -30,11 +30,12 @@ class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
         with(holder) {
             authorNameTextView.text = pullRequest?.user?.name
             titleTextView.text = pullRequest?.title
-            createdAtTextView.text = pullRequest?.createdAt
-            closedAtTextView.text = pullRequest?.closedAt
+            createdAtTextView.text = DateUtil.convertTimestampToDate(pullRequest?.createdAt)
+            closedAtTextView.text = DateUtil.convertTimestampToDate(pullRequest?.closedAt)
 
             Glide.with(authorImageView.context)
                 .load(pullRequest?.user?.avatarUrl)
+                .circleCrop()
                 .into(authorImageView)
         }
     }
