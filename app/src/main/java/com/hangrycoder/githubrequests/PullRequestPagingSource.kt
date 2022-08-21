@@ -14,10 +14,11 @@ class PullRequestPagingSource(
             // Start refresh at page 1 if undefined.
             val nextPageNumber = params.key ?: 1
             val response = service.getPullRequests(query, nextPageNumber)
+            val data = (response as NetworkResponse.Success).body
             return LoadResult.Page(
-                data = (response as NetworkResponse.Success).body,
+                data = data,
                 prevKey = null, // Only paging forward.
-                nextKey = nextPageNumber + 1
+                nextKey = if (data.isEmpty()) null else nextPageNumber + 1
             )
         } catch (e: Exception) {
             // Handle errors in this block and return LoadResult.Error if it is an

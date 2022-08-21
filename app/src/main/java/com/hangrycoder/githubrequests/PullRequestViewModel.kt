@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel() {
 
     val pullRequests: Flow<PagingData<PullRequest>> =
-        Pager(config = PagingConfig(20), pagingSourceFactory = {
+        Pager(config = PagingConfig(30), pagingSourceFactory = {
             repository.getPullRequests("closed")
         }).flow.cachedIn(viewModelScope)
 }
