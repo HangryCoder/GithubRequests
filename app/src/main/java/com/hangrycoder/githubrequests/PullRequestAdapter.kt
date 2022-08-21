@@ -5,16 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class PullRequestAdapter : RecyclerView.Adapter<PullRequestAdapter.PullRequestViewHolder>() {
+class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
+    PagingDataAdapter<PullRequest, PullRequestAdapter.PullRequestViewHolder>(diffCallback) {
 
-    var pullRequests: List<PullRequest>? = null
+ /*   var pullRequests: List<PullRequest>? = null
         set(value) {
             field = value
             notifyDataSetChanged()
-        }
+        }*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -23,7 +26,7 @@ class PullRequestAdapter : RecyclerView.Adapter<PullRequestAdapter.PullRequestVi
     }
 
     override fun onBindViewHolder(holder: PullRequestViewHolder, position: Int) {
-        val pullRequest = pullRequests?.get(position)
+        val pullRequest = getItem(position)//pullRequests?.get(position)
         with(holder) {
             authorNameTextView.text = "Author ${pullRequest?.user?.name}"
             titleTextView.text = pullRequest?.title
@@ -36,7 +39,7 @@ class PullRequestAdapter : RecyclerView.Adapter<PullRequestAdapter.PullRequestVi
         }
     }
 
-    override fun getItemCount(): Int = pullRequests?.size ?: 0
+   // override fun getItemCount(): Int = pullRequests?.size ?: 0
 
     inner class PullRequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val authorNameTextView: AppCompatTextView
