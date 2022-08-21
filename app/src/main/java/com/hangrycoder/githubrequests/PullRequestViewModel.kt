@@ -7,10 +7,14 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
 
-class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel() {
+class PullRequestViewModel(repository: RemoteRepository) : ViewModel() {
+
+    private val pullRequestPagingSource = repository.getPullRequests("closed")
 
     val pullRequests: Flow<PagingData<PullRequest>> =
         Pager(config = PagingConfig(30), pagingSourceFactory = {
-            repository.getPullRequests("closed")
+            pullRequestPagingSource
         }).flow.cachedIn(viewModelScope)
+
+    fun getNetworkStatus() = pullRequestPagingSource.networkStatusLiveData
 }

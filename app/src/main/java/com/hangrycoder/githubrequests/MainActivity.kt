@@ -1,6 +1,7 @@
 package com.hangrycoder.githubrequests
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -34,26 +35,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchClosedPullRequests() {
-        // viewModel.getClosedPullRequests()
         lifecycleScope.launchWhenStarted {
             viewModel.pullRequests.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
         }
-        /* viewModel.closedPullRequests.observe(this) { response ->
-             when (response) {
-                 is ApiState.Success -> {
-                     val pullRequests = response.data
-                     Log.e("TAG", "fetchClosedPullRequests: ${pullRequests.size}")
-                     //adapter.pullRequests = pullRequests
-                 }
-                 is ApiState.Loading -> {
-                     //Do Something
-                 }
-                 else -> {
-                     //Show error state
-                 }
-             }
-         }*/
+
+        viewModel.getNetworkStatus().observe(this) {
+            when (it) {
+                is ApiState.Loading -> {
+                    Log.e("TAG", "Network Status: Loading")
+                }
+                is ApiState.Success -> {
+                    Log.e("TAG", "Network Status: Success")
+                }
+                is ApiState.NetworkError -> {
+                    Log.e("TAG", "Network Status: Network Error ${it.error}")
+                }
+                is ApiState.ServerError -> {
+                    Log.e("TAG", "Network Status: Server Error ${it.errorCode}")
+                }
+                is ApiState.UnknownError -> {
+                    Log.e("TAG", "Network Status: Unknown Error ${it.error}")
+                }
+                else -> {
+                    Log.e("TAG", "Blaaah")
+                }
+            }
+        }
     }
 }
