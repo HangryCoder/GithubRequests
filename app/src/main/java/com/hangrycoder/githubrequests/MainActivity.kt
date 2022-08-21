@@ -1,13 +1,14 @@
 package com.hangrycoder.githubrequests
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
+import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModel
+import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

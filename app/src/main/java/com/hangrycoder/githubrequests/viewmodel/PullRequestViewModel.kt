@@ -1,10 +1,12 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.viewmodel
 
 import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.hangrycoder.githubrequests.PullRequest
+import com.hangrycoder.githubrequests.RemoteRepository
 import kotlinx.coroutines.flow.Flow
 
 class PullRequestViewModel(repository: RemoteRepository) : ViewModel() {
