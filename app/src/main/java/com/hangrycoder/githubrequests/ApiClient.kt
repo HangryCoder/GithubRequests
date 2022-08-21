@@ -12,7 +12,7 @@ object ApiClient {
 
     fun getClient(): Retrofit {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.HEADERS
         val client = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
