@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#2c3037"
+    android:background="@drawable/pull_request_background"
     android:paddingHorizontal="16dp">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -58,7 +58,7 @@
         android:id="@+id/created_on_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
+        android:layout_marginVertical="16dp"
         android:drawableStart="@drawable/ic_calendar"
         android:drawablePadding="4dp"
         android:fontFamily="@font/inter"
@@ -115,7 +115,7 @@
         android:id="@+id/closed_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
+        android:layout_marginVertical="16dp"
         android:fontFamily="@font/inter"
         android:textAllCaps="true"
         android:textColor="@color/white"
