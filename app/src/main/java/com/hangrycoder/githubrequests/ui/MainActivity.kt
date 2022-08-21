@@ -1,13 +1,11 @@
 package com.hangrycoder.githubrequests.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import com.hangrycoder.githubrequests.ApiState
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
 import com.hangrycoder.githubrequests.utils.PullRequestComparator
@@ -58,26 +56,6 @@ class MainActivity : AppCompatActivity() {
                 adapter.submitData(pagingData)
             }
         }
-
-        /*  viewModel.getNetworkStatus().observe(this) {
-              when (it) {
-                  is ApiState.Loading -> {
-                      binding.progressBar.isVisible = true
-                  }
-                  is ApiState.Success -> {
-                      Log.e("TAG", "Network Status: Success")
-                      binding.progressBar.isVisible = false
-                  }
-                  is ApiState.NetworkError -> {
-                      Log.e("TAG", "Network Status: Network Error ")
-                      binding.progressBar.isVisible = false
-                  }
-                  is ApiState.ServerError -> {
-                      Log.e("TAG", "ServerError Status: Server Error ")
-                      binding.progressBar.isVisible = false
-                  }
-              }
-          }*/
     }
 
     private fun paginationLoadListener() {
