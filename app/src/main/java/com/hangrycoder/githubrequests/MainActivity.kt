@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.getNetworkStatus().observe(this) {
+       /* viewModel.getNetworkStatus().observe(this) {
             when (it) {
                 is ApiState.Loading -> {
                     Log.e("TAG", "Network Status: Loading")
@@ -62,6 +62,6 @@ class MainActivity : AppCompatActivity() {
                     Log.e("TAG", "Blaaah")
                 }
             }
-        }
+        }*/
     }
 }
