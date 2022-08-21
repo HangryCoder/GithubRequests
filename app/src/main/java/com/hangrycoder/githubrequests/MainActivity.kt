@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.collectLatest
 
@@ -41,33 +40,30 @@ class MainActivity : AppCompatActivity() {
             viewModel.pullRequests.collectLatest { pagingData ->
                 adapter.submitData(pagingData)
             }
-
-           /* adapter.loadStateFlow.collectLatest { loadStates ->
-                binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
-            }*/
         }
 
-        /* viewModel.getNetworkStatus().observe(this) {
-             when (it) {
-                 is ApiState.Loading -> {
-                     Log.e("TAG", "Network Status: Loading")
-                 }
-                 is ApiState.Success -> {
-                     Log.e("TAG", "Network Status: Success")
-                 }
-                 is ApiState.NetworkError -> {
-                     Log.e("TAG", "Network Status: Network Error ${it.error}")
-                 }
-                 is ApiState.ServerError -> {
-                     Log.e("TAG", "Network Status: Server Error ${it.errorCode}")
-                 }
-                 is ApiState.UnknownError -> {
-                     Log.e("TAG", "Network Status: Unknown Error ${it.error}")
-                 }
-                 else -> {
-                     Log.e("TAG", "Blaaah")
-                 }
-             }
-         }*/
+        viewModel.getNetworkStatus().observe(this) {
+            when (it) {
+                is ApiState.Loading -> {
+                    binding.progressBar.isVisible = true
+                }
+                is ApiState.Success -> {
+                    Log.e("TAG", "Network Status: Success")
+                    binding.progressBar.isVisible = false
+                }
+                is ApiState.NetworkError -> {
+                    Log.e("TAG", "Network Status: Network Error ${it.error}")
+                    binding.progressBar.isVisible = false
+                }
+                is ApiState.ServerError -> {
+                    Log.e("TAG", "ServerError Status: Server Error ${it.error}")
+                    binding.progressBar.isVisible = false
+                }
+                is ApiState.UnknownError -> {
+                    Log.e("TAG", "Unknown Status: Unknown Error ${it.error}")
+                    binding.progressBar.isVisible = false
+                }
+            }
+        }
     }
 }

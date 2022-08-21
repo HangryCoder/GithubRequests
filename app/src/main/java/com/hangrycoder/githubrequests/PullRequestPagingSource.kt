@@ -5,8 +5,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 
 class PullRequestPagingSource(
-    val service: GithubApi,
-    val query: String
+    private val service: GithubApi,
+    private val query: String
 ) : PagingSource<Int, PullRequest>() {
 
     val networkStatusLiveData = MutableLiveData<ApiState<Any>>()
@@ -35,24 +35,19 @@ class PullRequestPagingSource(
             }
             is NetworkResponse.NetworkError -> {
                 val error = response.error
-                networkStatusLiveData.value = ApiState.NetworkError(error)
+               // networkStatusLiveData.value = ApiState.NetworkError(error)
                 return LoadResult.Error(error)
             }
             is NetworkResponse.ApiError -> {
-                networkStatusLiveData.value = ApiState.ServerError(response.body, response.code)
+                //networkStatusLiveData.value = ApiState.ServerError(response.body, response.code)
                 return LoadResult.Error(Exception())
             }
             is NetworkResponse.UnknownError -> {
                 val error = response.error
-                networkStatusLiveData.value = ApiState.UnknownError(error)
+               // networkStatusLiveData.value = ApiState.UnknownError(error)
                 return LoadResult.Error(error!!)
             }
         }
-//        } catch (e: Exception) {
-//            // Handle errors in this block and return LoadResult.Error if it is an
-//            // expected error (such as a network failure).
-//            return LoadResult.Error(e)
-//        }
     }
 
     override fun getRefreshKey(state: PagingState<Int, PullRequest>): Int? {

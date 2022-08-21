@@ -12,7 +12,7 @@ class PullRequestViewModel(repository: RemoteRepository) : ViewModel() {
     private val pullRequestPagingSource = repository.getPullRequests("closed")
 
     val pullRequests: Flow<PagingData<PullRequest>> =
-        Pager(config = PagingConfig(30), pagingSourceFactory = {
+        Pager(config = PagingConfig(5), pagingSourceFactory = {
             pullRequestPagingSource
         }).flow.cachedIn(viewModelScope)
 
