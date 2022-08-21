@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.hangrycoder.githubrequests.models.PullRequest
+import com.hangrycoder.githubrequests.networking.ApiService
+import com.hangrycoder.githubrequests.networking.NetworkResponse
 
 class PullRequestPagingSource(
     private val service: ApiService,

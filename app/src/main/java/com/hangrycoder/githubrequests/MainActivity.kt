@@ -7,6 +7,8 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
+import com.hangrycoder.githubrequests.networking.ApiClient
+import com.hangrycoder.githubrequests.networking.ApiService
 import com.hangrycoder.githubrequests.repository.RemoteRepository
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModel
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModelFactory

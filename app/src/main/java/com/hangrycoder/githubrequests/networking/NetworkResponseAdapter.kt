@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.networking
 
 import okhttp3.ResponseBody
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.networking
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ApiClient {
-    val BASE_URL = "https://api.github.com/"
+    private const val BASE_URL = "https://api.github.com/"
 
     fun getClient(): Retrofit {
         val httpLoggingInterceptor = HttpLoggingInterceptor()

@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.networking
 
 import java.io.IOException
 

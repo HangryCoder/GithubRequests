@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.networking
 
 import com.hangrycoder.githubrequests.models.PullRequest
 import retrofit2.http.GET
