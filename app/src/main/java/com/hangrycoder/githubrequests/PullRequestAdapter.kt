@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hangrycoder.githubrequests.models.PullRequest
+import com.hangrycoder.githubrequests.utils.DateUtil
 
 class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
     PagingDataAdapter<PullRequest, PullRequestAdapter.PullRequestViewHolder>(diffCallback) {

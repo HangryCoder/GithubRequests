@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.utils
 
 import android.graphics.Rect
 import android.view.View

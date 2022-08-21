@@ -10,6 +10,7 @@ import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
 import com.hangrycoder.githubrequests.networking.ApiClient
 import com.hangrycoder.githubrequests.networking.ApiService
 import com.hangrycoder.githubrequests.repository.RemoteRepository
+import com.hangrycoder.githubrequests.utils.SpaceItemDecoration
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModel
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModelFactory
 import kotlinx.coroutines.flow.collectLatest

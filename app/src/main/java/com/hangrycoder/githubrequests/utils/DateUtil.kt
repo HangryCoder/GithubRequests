@@ -1,4 +1,4 @@
-package com.hangrycoder.githubrequests
+package com.hangrycoder.githubrequests.utils
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
