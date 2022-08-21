@@ -9,41 +9,8 @@ import kotlinx.coroutines.flow.Flow
 
 class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel() {
 
-    private val _closedPullRequests by lazy {
-        MutableLiveData<ApiState<List<PullRequest>>>()
-    }
-    val closedPullRequests: LiveData<ApiState<List<PullRequest>>> by lazy {
-        _closedPullRequests
-    }
-
     val pullRequests: Flow<PagingData<PullRequest>> =
         Pager(config = PagingConfig(20), pagingSourceFactory = {
             repository.getPullRequests("closed")
         }).flow.cachedIn(viewModelScope)
-
-//    fun getClosedPullRequests() {
-//
-//    }
-
-
-    /* fun getClosedPullRequests() {
-         viewModelScope.launch(Dispatchers.IO) {
-             _closedPullRequests.postValue(ApiState.Loading)
-             when (val response = repository.getPullRequests("closed")) {
-                 is NetworkResponse.Success -> {
-                     // Log.e("ViewModel","response ${response.body}")
-                     _closedPullRequests.postValue(ApiState.Success(response.body))
-                 }
-                 is NetworkResponse.ApiError -> {
-
-                 }
-                 is NetworkResponse.NetworkError -> {
-
-                 }
-                 is NetworkResponse.UnknownError -> {
-                    // _closedPullRequests.postValue(ApiState.Error(response))
-                 }
-             }
-         }
-     }*/
 }
