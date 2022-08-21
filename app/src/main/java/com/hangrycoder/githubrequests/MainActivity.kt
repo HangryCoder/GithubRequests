@@ -28,7 +28,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
+        val divider = SpaceItemDecoration(32)
         binding.recyclerView.adapter = adapter
+        binding.recyclerView.addItemDecoration(divider)
     }
 
     private fun fetchClosedPullRequests() {
