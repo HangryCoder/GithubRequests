@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val divider = SpaceItemDecoration(32)
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter.withLoadStateFooter(footer = LoaderStateAdapter())
         binding.recyclerView.addItemDecoration(divider)
     }
 
@@ -41,27 +41,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-       /* viewModel.getNetworkStatus().observe(this) {
-            when (it) {
-                is ApiState.Loading -> {
-                    Log.e("TAG", "Network Status: Loading")
-                }
-                is ApiState.Success -> {
-                    Log.e("TAG", "Network Status: Success")
-                }
-                is ApiState.NetworkError -> {
-                    Log.e("TAG", "Network Status: Network Error ${it.error}")
-                }
-                is ApiState.ServerError -> {
-                    Log.e("TAG", "Network Status: Server Error ${it.errorCode}")
-                }
-                is ApiState.UnknownError -> {
-                    Log.e("TAG", "Network Status: Unknown Error ${it.error}")
-                }
-                else -> {
-                    Log.e("TAG", "Blaaah")
-                }
-            }
-        }*/
+        /* viewModel.getNetworkStatus().observe(this) {
+             when (it) {
+                 is ApiState.Loading -> {
+                     Log.e("TAG", "Network Status: Loading")
+                 }
+                 is ApiState.Success -> {
+                     Log.e("TAG", "Network Status: Success")
+                 }
+                 is ApiState.NetworkError -> {
+                     Log.e("TAG", "Network Status: Network Error ${it.error}")
+                 }
+                 is ApiState.ServerError -> {
+                     Log.e("TAG", "Network Status: Server Error ${it.errorCode}")
+                 }
+                 is ApiState.UnknownError -> {
+                     Log.e("TAG", "Network Status: Unknown Error ${it.error}")
+                 }
+                 else -> {
+                     Log.e("TAG", "Blaaah")
+                 }
+             }
+         }*/
     }
 }
