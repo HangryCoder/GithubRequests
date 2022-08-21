@@ -2,7 +2,7 @@ package com.hangrycoder.githubrequests.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.hangrycoder.githubrequests.RemoteRepository
+import com.hangrycoder.githubrequests.repository.RemoteRepository
 
 class PullRequestViewModelFactory(private val remoteRepository: RemoteRepository) :
     ViewModelProvider.Factory {
