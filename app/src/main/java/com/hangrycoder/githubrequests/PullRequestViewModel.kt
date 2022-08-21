@@ -1,12 +1,11 @@
 package com.hangrycoder.githubrequests
 
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.paging.cachedIn
+import kotlinx.coroutines.flow.Flow
 
 class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel() {
 
@@ -18,11 +17,10 @@ class PullRequestViewModel(private val repository: RemoteRepository) : ViewModel
     }
 
     fun getClosedPullRequests() {
-        val pullRequests: LiveData<PagingData<PullRequest>> =
+        val pullRequests: Flow<PagingData<PullRequest>> =
             Pager(config = PagingConfig(20), pagingSourceFactory = {
                 repository.getPullRequests("closed")
-            }).flow.asLiveData(viewModelScope.coroutineContext)
-
+            }).flow.cachedIn(viewModelScope)
     }
 
 
