@@ -5,7 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.hangrycoder.githubrequests.PullRequest
+import com.hangrycoder.githubrequests.models.PullRequest
 import com.hangrycoder.githubrequests.repository.RemoteRepository
 import kotlinx.coroutines.flow.Flow
 

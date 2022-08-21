@@ -3,6 +3,7 @@ package com.hangrycoder.githubrequests
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.hangrycoder.githubrequests.models.PullRequest
 
 class PullRequestPagingSource(
     private val service: ApiService,

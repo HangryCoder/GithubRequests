@@ -1,5 +1,6 @@
 package com.hangrycoder.githubrequests
 
+import com.hangrycoder.githubrequests.models.PullRequest
 import retrofit2.http.GET
 import retrofit2.http.Query
 
