@@ -9,6 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="divider_color">#d9d9d9</color>
     <color name="card_background">#2c3037</color>
-    <color name="label_color">#bbbbbb</color>
+    <color name="label_night_color">#bbbbbb</color>
     <color name="placeholder_icon">#4e5259</color>
+
+    <color name="almost_black">#030303</color>
+    <color name="label_color">#757575</color>
+
+    <color name="light_background_color">#f7f8f9</color>
+    <color name="dark_background_color">@color/black</color>
+
 </resources>
