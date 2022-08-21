@@ -5,7 +5,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 
 class PullRequestPagingSource(
-    private val service: GithubApi,
+    private val service: ApiService,
     private val query: String
 ) : PagingSource<Int, PullRequest>() {
 

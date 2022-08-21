@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: PullRequestViewModel by viewModels {
         PullRequestViewModelFactory(
-            RemoteRepository(ApiClient.getClient().create(GithubApi::class.java))
+            RemoteRepository(ApiClient.getClient().create(ApiService::class.java))
         )
     }
 

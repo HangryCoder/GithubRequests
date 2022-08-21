@@ -3,7 +3,7 @@ package com.hangrycoder.githubrequests
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface GithubApi {
+interface ApiService {
     @GET("repos/square/retrofit/pulls")
     suspend fun getPullRequests(
         @Query("state") state: String,
