@@ -1,12 +1,13 @@
 package com.hangrycoder.githubrequests.utils
 
+import android.annotation.SuppressLint
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 object DateUtil {
 
-    //Need to fix this
+    @SuppressLint("SimpleDateFormat")
     fun convertTimestampToDate(timestamp: String?): String? {
         timestamp ?: return null
 
