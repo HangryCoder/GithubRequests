@@ -17,6 +17,4 @@ class PullRequestViewModel(repository: RemoteRepository) : ViewModel() {
         Pager(config = PagingConfig(5), pagingSourceFactory = {
             pullRequestPagingSource
         }).flow.cachedIn(viewModelScope)
-
-    fun getNetworkStatus() = pullRequestPagingSource.networkStatusLiveData
 }
