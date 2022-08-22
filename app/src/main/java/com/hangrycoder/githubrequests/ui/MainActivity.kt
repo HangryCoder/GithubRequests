@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: PullRequestViewModel by viewModels {
         PullRequestViewModelFactory(
-            RemoteRepository(ApiClient.getClient().create(ApiService::class.java))
+            RemoteRepository(ApiClient.getApiService())
         )
     }
 

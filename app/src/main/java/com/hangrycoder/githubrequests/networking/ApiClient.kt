@@ -10,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object ApiClient {
     private const val BASE_URL = "https://api.github.com/"
 
-    fun getClient(): Retrofit {
+    fun getApiService(): ApiService {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.HEADERS
         val client = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
@@ -24,5 +24,6 @@ object ApiClient {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(client)
             .build()
+            .create(ApiService::class.java)
     }
 }
