@@ -13,6 +13,7 @@ import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
 import com.hangrycoder.githubrequests.utils.PullRequestComparator
 import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
+import com.hangrycoder.githubrequests.di.ActivityComponent
 import com.hangrycoder.githubrequests.networking.ApiClient
 import com.hangrycoder.githubrequests.networking.ApiService
 import com.hangrycoder.githubrequests.repository.RemoteRepository
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     //  @Inject lateinit var viewModel: PullRequestViewModel
 
+    lateinit var activityComponent: ActivityComponent
+
     @Inject
     lateinit var remoteRepository: RemoteRepository
 
@@ -47,7 +50,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        (applicationContext as MyApplication).appComponent?.inject(this)
+        activityComponent =
+            (applicationContext as MyApplication).appComponent?.activityComponent()?.create()!!
+        activityComponent.inject(this)
 
         initialSetup()
     }
