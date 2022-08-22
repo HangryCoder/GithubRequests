@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.bumptech.glide.Glide
 import com.hangrycoder.githubrequests.ApiState
+import com.hangrycoder.githubrequests.MyApplication
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
 import com.hangrycoder.githubrequests.utils.PullRequestComparator
@@ -24,15 +25,19 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.HttpException
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val adapter = PullRequestAdapter(PullRequestComparator)
 
+    @Inject
+    lateinit var apiService: ApiService
+
     private val viewModel: PullRequestViewModel by viewModels {
         PullRequestViewModelFactory(
-            RemoteRepository(ApiClient.getApiService())
+            RemoteRepository(apiService)
         )
     }
 
@@ -40,6 +45,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        (applicationContext as MyApplication).appComponent?.inject(this)
+
         initialSetup()
     }
 
