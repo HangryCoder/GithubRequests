@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         val divider = SpaceItemDecoration(resources.getInteger(R.integer.divider_space))
-        binding.recyclerView.adapter = adapter.withLoadStateFooter(footer = LoaderStateAdapter())
+        binding.recyclerView.adapter =
+            adapter.withLoadStateFooter(footer = LoaderStateAdapter(adapter::retry))
         binding.recyclerView.addItemDecoration(divider)
     }
 
