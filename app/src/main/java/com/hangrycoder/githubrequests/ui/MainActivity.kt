@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                 is NoDataException -> {
                     errorMessage.text =
                         errorMessage.context.resources.getString(R.string.no_pull_requests_found)
-                    errorIcon = R.drawable.ic_server_error
+                    errorIcon = R.drawable.ic_no_results
                     tryAgainButton.isVisible = false
                 }
                 else -> {
