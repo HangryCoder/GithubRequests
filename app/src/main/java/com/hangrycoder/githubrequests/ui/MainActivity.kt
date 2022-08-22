@@ -31,18 +31,19 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var adapter: PullRequestAdapter
 
-    //  @Inject lateinit var viewModel: PullRequestViewModel
+    @Inject
+    lateinit var viewModel: PullRequestViewModel
 
     lateinit var activityComponent: ActivityComponent
 
-    @Inject
-    lateinit var remoteRepository: RemoteRepository
+    /*   @Inject
+       lateinit var remoteRepository: RemoteRepository
 
-    private val viewModel: PullRequestViewModel by viewModels {
-        PullRequestViewModelFactory(
-            remoteRepository
-        )
-    }
+          private val viewModel: PullRequestViewModel by viewModels {
+           PullRequestViewModelFactory(
+               remoteRepository
+           )
+       }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
