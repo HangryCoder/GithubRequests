@@ -1,44 +1,47 @@
 package com.hangrycoder.githubrequests.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.bumptech.glide.Glide
+import com.hangrycoder.githubrequests.MyApplication
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
-import com.hangrycoder.githubrequests.utils.PullRequestComparator
 import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
-import com.hangrycoder.githubrequests.networking.ApiClient
-import com.hangrycoder.githubrequests.networking.ApiService
-import com.hangrycoder.githubrequests.repository.RemoteRepository
+import com.hangrycoder.githubrequests.di.ActivityComponent
 import com.hangrycoder.githubrequests.utils.NoDataException
 import com.hangrycoder.githubrequests.utils.SpaceItemDecoration
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModel
-import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.HttpException
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val adapter = PullRequestAdapter(PullRequestComparator)
 
-    private val viewModel: PullRequestViewModel by viewModels {
-        PullRequestViewModelFactory(
-            RemoteRepository(ApiClient.getClient().create(ApiService::class.java))
-        )
-    }
+    @Inject
+    lateinit var adapter: PullRequestAdapter
+
+    @Inject
+    lateinit var viewModel: PullRequestViewModel
+
+    lateinit var activityComponent: ActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        activityComponent =
+            (applicationContext as MyApplication).appComponent?.activityComponent()?.create()!!
+        activityComponent.inject(this)
+
         initialSetup()
     }
 
