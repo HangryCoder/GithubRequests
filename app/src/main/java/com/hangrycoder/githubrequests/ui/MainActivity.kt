@@ -36,15 +36,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var activityComponent: ActivityComponent
 
-    /*   @Inject
-       lateinit var remoteRepository: RemoteRepository
-
-          private val viewModel: PullRequestViewModel by viewModels {
-           PullRequestViewModelFactory(
-               remoteRepository
-           )
-       }*/
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
