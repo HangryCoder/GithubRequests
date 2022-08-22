@@ -8,8 +8,9 @@ import androidx.paging.cachedIn
 import com.hangrycoder.githubrequests.models.PullRequest
 import com.hangrycoder.githubrequests.repository.RemoteRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class PullRequestViewModel(repository: RemoteRepository) : ViewModel() {
+class PullRequestViewModel @Inject constructor(repository: RemoteRepository) : ViewModel() {
 
     private val pullRequestPagingSource = repository.getPullRequests("closed")
 

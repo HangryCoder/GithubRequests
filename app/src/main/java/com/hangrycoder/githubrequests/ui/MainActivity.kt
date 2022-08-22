@@ -35,11 +35,13 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var apiService: ApiService
 
-    private val viewModel: PullRequestViewModel by viewModels {
-        PullRequestViewModelFactory(
-            RemoteRepository(apiService)
-        )
-    }
+    @Inject lateinit var viewModel: PullRequestViewModel
+
+//    private val viewModel: PullRequestViewModel by viewModels {
+//        PullRequestViewModelFactory(
+//            RemoteRepository(apiService)
+//        )
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
