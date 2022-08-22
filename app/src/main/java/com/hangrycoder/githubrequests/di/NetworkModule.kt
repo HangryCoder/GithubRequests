@@ -1,6 +1,5 @@
 package com.hangrycoder.githubrequests.di
 
-import com.hangrycoder.githubrequests.networking.ApiClient
 import com.hangrycoder.githubrequests.networking.ApiService
 import com.hangrycoder.githubrequests.networking.NetworkResponseAdapterFactory
 import com.squareup.moshi.Moshi
@@ -11,16 +10,13 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+class NetworkModule(val baseUrl: String) {
 
     @Provides
-    fun provideBaseUrl(): String {
-        return "https://api.github.com/"
-    }
-
-    @Provides
+    @Singleton
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.HEADERS
@@ -28,11 +24,13 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
     }
 
     @Provides
+    @Singleton
     fun provideMoshi(): Moshi {
         return Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
@@ -40,7 +38,8 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideApiService(baseUrl: String, okHttpClient: OkHttpClient, moshi: Moshi): ApiService {
+    @Singleton
+    fun provideApiService(okHttpClient: OkHttpClient, moshi: Moshi): ApiService {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(NetworkResponseAdapterFactory())
