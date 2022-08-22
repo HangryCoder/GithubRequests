@@ -28,7 +28,8 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/error_message"
         style="@style/Error.Text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginHorizontal="@dimen/dp_16"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_8"
         android:text="@string/error_message"
