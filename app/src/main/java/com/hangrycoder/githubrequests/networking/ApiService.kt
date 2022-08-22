@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("repos/HangryCoder/CalculatorApp/pulls")
+    @GET("repos/bumptech/glide/pulls")
     suspend fun getPullRequests(
         @Query("state") state: String,
         @Query("page") page: Int
