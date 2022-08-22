@@ -10,12 +10,9 @@ import com.bumptech.glide.Glide
 import com.hangrycoder.githubrequests.MyApplication
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
-import com.hangrycoder.githubrequests.utils.PullRequestComparator
 import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
 import com.hangrycoder.githubrequests.di.ActivityComponent
-import com.hangrycoder.githubrequests.networking.ApiClient
-import com.hangrycoder.githubrequests.networking.ApiService
 import com.hangrycoder.githubrequests.repository.RemoteRepository
 import com.hangrycoder.githubrequests.utils.NoDataException
 import com.hangrycoder.githubrequests.utils.SpaceItemDecoration
@@ -30,7 +27,9 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val adapter = PullRequestAdapter(PullRequestComparator)
+
+    @Inject
+    lateinit var adapter: PullRequestAdapter
 
     //  @Inject lateinit var viewModel: PullRequestViewModel
 

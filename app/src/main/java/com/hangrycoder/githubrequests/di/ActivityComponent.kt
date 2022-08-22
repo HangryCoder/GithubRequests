@@ -4,7 +4,7 @@ import com.hangrycoder.githubrequests.ui.MainActivity
 import dagger.Subcomponent
 
 @ActivityScope
-@Subcomponent
+@Subcomponent(modules = [ActivityModule::class])
 interface ActivityComponent {
     @Subcomponent.Factory
     interface Factory {
