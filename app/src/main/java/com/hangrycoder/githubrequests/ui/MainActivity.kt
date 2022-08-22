@@ -1,7 +1,6 @@
 package com.hangrycoder.githubrequests.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -18,6 +17,7 @@ import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
 import com.hangrycoder.githubrequests.networking.ApiClient
 import com.hangrycoder.githubrequests.networking.ApiService
 import com.hangrycoder.githubrequests.repository.RemoteRepository
+import com.hangrycoder.githubrequests.utils.NoDataException
 import com.hangrycoder.githubrequests.utils.SpaceItemDecoration
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModel
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModelFactory
@@ -79,18 +79,6 @@ class MainActivity : AppCompatActivity() {
                 adapter.submitData(pagingData)
             }
         }
-
-        viewModel.getNetworkStatus().observe(this) {
-            when (it) {
-                is ApiState.Success -> {
-                    val response = it.data
-                    Log.e("TAG", "getNetworkStatus: $response")
-                }
-                else -> {
-                    //Show error states!
-                }
-            }
-        }
     }
 
     private fun paginationLoadListener() {
@@ -106,6 +94,7 @@ class MainActivity : AppCompatActivity() {
     private fun errorHandling(loadState: LoadState, binding: ActivityMainBinding) {
         val errorImageView = binding.errorLayout.errorImage
         val errorMessage = binding.errorLayout.errorMessage
+        val tryAgainButton = binding.errorLayout.tryAgainButton
         var errorIcon: Int? = null
         if (loadState is LoadState.Error) {
             when (loadState.error) {
@@ -113,16 +102,25 @@ class MainActivity : AppCompatActivity() {
                     errorMessage.text =
                         errorMessage.context.resources.getString(R.string.no_internet_connection)
                     errorIcon = R.drawable.ic_network_error
+                    tryAgainButton.isVisible = true
                 }
                 is HttpException -> {
                     errorMessage.text =
                         errorMessage.context.resources.getString(R.string.server_error)
                     errorIcon = R.drawable.ic_server_error
+                    tryAgainButton.isVisible = true
+                }
+                is NoDataException -> {
+                    errorMessage.text =
+                        errorMessage.context.resources.getString(R.string.no_pull_requests_found)
+                    errorIcon = R.drawable.ic_no_results
+                    tryAgainButton.isVisible = false
                 }
                 else -> {
                     errorMessage.text =
                         errorMessage.context.resources.getString(R.string.error_message)
                     errorIcon = R.drawable.ic_server_error
+                    tryAgainButton.isVisible = true
                 }
             }
         }

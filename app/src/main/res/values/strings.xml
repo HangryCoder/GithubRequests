@@ -6,4 +6,5 @@
     <string name="try_again">Try again</string>
     <string name="no_internet_connection">No internet connection. Make sure your WiFi or data is on</string>
     <string name="server_error">Internal server error. Please come back and try again later</string>
+    <string name="no_pull_requests_found">No pull requests found</string>
 </resources>
