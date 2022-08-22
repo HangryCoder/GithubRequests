@@ -15,7 +15,7 @@ class ViewModelModule {
     @Provides
     fun provideRepository(service: ApiService): RemoteRepository = RemoteRepository(service)
 
-    @Provides
+   /* @Provides
     fun provideViewModelFactory(remoteRepository: RemoteRepository): PullRequestViewModelFactory {
         return PullRequestViewModelFactory(remoteRepository)
     }
@@ -30,5 +30,5 @@ class ViewModelModule {
             activity.viewModelStore,
             pullRequestViewModelFactory
         )[PullRequestViewModel::class.java]
-    }
+    }*/
 }

@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.bumptech.glide.Glide
-import com.hangrycoder.githubrequests.ApiState
 import com.hangrycoder.githubrequests.MyApplication
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
@@ -32,16 +31,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val adapter = PullRequestAdapter(PullRequestComparator)
 
+    //  @Inject lateinit var viewModel: PullRequestViewModel
+
     @Inject
-    lateinit var apiService: ApiService
+    lateinit var remoteRepository: RemoteRepository
 
-    @Inject lateinit var viewModel: PullRequestViewModel
-
-//    private val viewModel: PullRequestViewModel by viewModels {
-//        PullRequestViewModelFactory(
-//            RemoteRepository(apiService)
-//        )
-//    }
+    private val viewModel: PullRequestViewModel by viewModels {
+        PullRequestViewModelFactory(
+            remoteRepository
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
