@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pull_request_background"
+    android:paddingHorizontal="@dimen/dp_16">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pull_request_title"
+        style="@style/Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Improved Performance" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/pull_request_user_image"
+        android:layout_width="@dimen/user_profile_image"
+        android:layout_height="@dimen/user_profile_image"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintStart_toStartOf="@id/pull_request_title"
+        app:layout_constraintTop_toBottomOf="@id/pull_request_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pull_request_user_name"
+        style="@style/SubTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="@id/pull_request_user_image"
+        app:layout_constraintEnd_toEndOf="@id/pull_request_title"
+        app:layout_constraintStart_toEndOf="@id/pull_request_user_image"
+        app:layout_constraintTop_toTopOf="@id/pull_request_user_image"
+        tools:text="Sonia Wadji" />
+
+    <View
+        android:id="@+id/horizontal_divider"
+        style="@style/Divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/horizontal_divider_height"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pull_request_user_image" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/created_on_label"
+        style="@style/Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/dp_16"
+        android:text="@string/created_on"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/horizontal_divider" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/created_date"
+        style="@style/Label.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_4"
+        app:layout_constraintBottom_toBottomOf="@id/created_on_label"
+        app:layout_constraintStart_toEndOf="@id/created_on_label"
+        app:layout_constraintTop_toTopOf="@id/created_on_label"
+        tools:text="04 APR 22" />
+
+    <View
+        android:id="@+id/date_divider"
+        style="@style/Divider"
+        android:layout_width="@dimen/vertical_divider_width"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/horizontal_divider" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/closing_on_label"
+        style="@style/Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:text="@string/closed_on"
+        app:layout_constraintBottom_toBottomOf="@id/closed_date"
+        app:layout_constraintEnd_toStartOf="@id/closed_date"
+        app:layout_constraintTop_toTopOf="@id/closed_date" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/closed_date"
+        style="@style/Label.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/dp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/horizontal_divider"
+        tools:text="04 APR 22" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
