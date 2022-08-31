@@ -1,7 +1,6 @@
 package com.hangrycoder.githubrequests.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -12,12 +11,9 @@ import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
 import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
-import com.hangrycoder.githubrequests.networking.ApiService
-import com.hangrycoder.githubrequests.repository.RemoteRepository
 import com.hangrycoder.githubrequests.utils.NoDataException
 import com.hangrycoder.githubrequests.utils.SpaceItemDecoration
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModel
-import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import okio.IOException
@@ -32,13 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var adapter: PullRequestAdapter
 
     @Inject
-    lateinit var apiService: ApiService
-
-    private val viewModel: PullRequestViewModel by viewModels {
-        PullRequestViewModelFactory(
-            RemoteRepository(apiService)
-        )
-    }
+    lateinit var viewModel: PullRequestViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setupDagger()
