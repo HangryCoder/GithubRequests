@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setupDagger()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -49,7 +50,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialSetup() {
-        setupDagger()
         setupRecyclerView()
         fetchClosedPullRequests()
         paginationLoadListener()
@@ -57,7 +57,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupDagger() {
-        val component = (application as MyApplication).appComponent.inject(this)
+        val component =
+            (application as MyApplication).appComponent
+                .activityComponent().create().inject(this)
     }
 
     private fun tryAgainClickListener() {
