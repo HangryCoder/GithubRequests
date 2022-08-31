@@ -12,6 +12,8 @@ import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
 import com.hangrycoder.githubrequests.utils.PullRequestComparator
 import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
+import com.hangrycoder.githubrequests.di.DaggerApplicationComponent
+import com.hangrycoder.githubrequests.di.NetworkModule
 import com.hangrycoder.githubrequests.networking.ApiClient
 import com.hangrycoder.githubrequests.networking.ApiService
 import com.hangrycoder.githubrequests.repository.RemoteRepository
@@ -39,6 +41,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val daggerComponent = DaggerApplicationComponent.builder()
+            .networkModule(NetworkModule("https://api.github.com/"))
+            .build()
+
+        daggerComponent.getApiService()
+
         initialSetup()
     }
 
