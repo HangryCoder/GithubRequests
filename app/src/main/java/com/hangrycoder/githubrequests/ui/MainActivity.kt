@@ -1,6 +1,5 @@
 package com.hangrycoder.githubrequests.ui
 
-import android.app.Application
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -11,12 +10,8 @@ import com.bumptech.glide.Glide
 import com.hangrycoder.githubrequests.MyApplication
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
-import com.hangrycoder.githubrequests.utils.PullRequestComparator
 import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
-import com.hangrycoder.githubrequests.di.DaggerApplicationComponent
-import com.hangrycoder.githubrequests.di.NetworkModule
-import com.hangrycoder.githubrequests.networking.ApiClient
 import com.hangrycoder.githubrequests.networking.ApiService
 import com.hangrycoder.githubrequests.repository.RemoteRepository
 import com.hangrycoder.githubrequests.utils.NoDataException
@@ -32,7 +27,9 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val adapter = PullRequestAdapter(PullRequestComparator)
+
+    @Inject
+    lateinit var adapter: PullRequestAdapter
 
     @Inject
     lateinit var apiService: ApiService
@@ -60,11 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupDagger() {
-        // val component = MyApplication.appComponent.inject(this)
-        val appComponent = DaggerApplicationComponent.builder()
-            .networkModule(NetworkModule("https://api.github.com/"))
-            .build()
-            .inject(this)
+        val component = (application as MyApplication).appComponent.inject(this)
     }
 
     private fun tryAgainClickListener() {

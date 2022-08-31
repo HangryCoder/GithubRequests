@@ -7,13 +7,12 @@ import com.hangrycoder.githubrequests.di.NetworkModule
 
 class MyApplication : Application() {
 
-    companion object {
-        private val BASE_URL = "https://api.github.com/"
+    private val BASE_URL = "https://api.github.com/"
 
-        val appComponent: ApplicationComponent by lazy {
-            DaggerApplicationComponent.builder()
-                .networkModule(NetworkModule(BASE_URL))
-                .build()
-        }
+    val appComponent: ApplicationComponent by lazy {
+        DaggerApplicationComponent.builder()
+            .networkModule(NetworkModule(BASE_URL))
+            .build()
     }
+
 }
