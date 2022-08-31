@@ -47,9 +47,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupDagger() {
-        val component =
-            (application as MyApplication).appComponent
-                .activityComponent().create().inject(this)
+        (application as MyApplication).appComponent
+            .activityComponent().create().inject(this)
     }
 
     private fun tryAgainClickListener() {
