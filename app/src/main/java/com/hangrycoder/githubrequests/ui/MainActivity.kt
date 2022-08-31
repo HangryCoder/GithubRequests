@@ -1,5 +1,6 @@
 package com.hangrycoder.githubrequests.ui
 
+import android.app.Application
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.bumptech.glide.Glide
+import com.hangrycoder.githubrequests.MyApplication
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
 import com.hangrycoder.githubrequests.utils.PullRequestComparator
@@ -25,15 +27,19 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.HttpException
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val adapter = PullRequestAdapter(PullRequestComparator)
 
+    @Inject
+    lateinit var apiService: ApiService
+
     private val viewModel: PullRequestViewModel by viewModels {
         PullRequestViewModelFactory(
-            RemoteRepository(ApiClient.getClient().create(ApiService::class.java))
+            RemoteRepository(apiService)
         )
     }
 
@@ -42,20 +48,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val daggerComponent = DaggerApplicationComponent.builder()
-            .networkModule(NetworkModule("https://api.github.com/"))
-            .build()
-
-        daggerComponent.getApiService()
-
         initialSetup()
     }
 
     private fun initialSetup() {
+        setupDagger()
         setupRecyclerView()
         fetchClosedPullRequests()
         paginationLoadListener()
         tryAgainClickListener()
+    }
+
+    private fun setupDagger() {
+        // val component = MyApplication.appComponent.inject(this)
+        val appComponent = DaggerApplicationComponent.builder()
+            .networkModule(NetworkModule("https://api.github.com/"))
+            .build()
+            .inject(this)
     }
 
     private fun tryAgainClickListener() {
