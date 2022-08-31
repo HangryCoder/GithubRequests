@@ -14,10 +14,13 @@ import javax.inject.Inject
 @ActivityScope
 class PullRequestViewModel @Inject constructor(repository: RemoteRepository) : ViewModel() {
 
-    private val pullRequestPagingSource = repository.getPullRequests("closed")
+    private val CLOSED_STATE = "closed"
+    private val PAGE_SIZE = 5
+
+    private val pullRequestPagingSource = repository.getPullRequests(CLOSED_STATE)
 
     val pullRequests: Flow<PagingData<PullRequest>> =
-        Pager(config = PagingConfig(5), pagingSourceFactory = {
+        Pager(config = PagingConfig(PAGE_SIZE), pagingSourceFactory = {
             pullRequestPagingSource
         }).flow.cachedIn(viewModelScope)
 }
