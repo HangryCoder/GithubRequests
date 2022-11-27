@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.bumptech.glide.Glide
-import com.hangrycoder.githubrequests.MyApplication
 import com.hangrycoder.githubrequests.ui.adapter.LoaderStateAdapter
 import com.hangrycoder.githubrequests.ui.adapter.PullRequestAdapter
 import com.hangrycoder.githubrequests.R
@@ -30,13 +29,9 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var adapter: PullRequestAdapter
 
-    /*@Inject
-    lateinit var viewModel: PullRequestViewModel*/
-
     private val viewModel: PullRequestViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-       // setupDagger()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -50,11 +45,6 @@ class MainActivity : AppCompatActivity() {
         paginationLoadListener()
         tryAgainClickListener()
     }
-
-   /* private fun setupDagger() {
-        (application as MyApplication).appComponent
-            .activityComponent().create().inject(this)
-    }*/
 
     private fun tryAgainClickListener() {
         binding.errorLayout.tryAgainButton.setOnClickListener {
@@ -120,9 +110,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        Glide.with(errorImageView.context)
-            .load(errorIcon)
-            .placeholder(R.drawable.ic_server_error)
+        Glide.with(errorImageView.context).load(errorIcon).placeholder(R.drawable.ic_server_error)
             .into(errorImageView)
     }
 }
