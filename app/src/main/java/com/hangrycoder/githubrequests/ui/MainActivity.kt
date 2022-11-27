@@ -1,6 +1,7 @@
 package com.hangrycoder.githubrequests.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -14,12 +15,14 @@ import com.hangrycoder.githubrequests.databinding.ActivityMainBinding
 import com.hangrycoder.githubrequests.utils.NoDataException
 import com.hangrycoder.githubrequests.utils.SpaceItemDecoration
 import com.hangrycoder.githubrequests.viewmodel.PullRequestViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -27,11 +30,13 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var adapter: PullRequestAdapter
 
-    @Inject
-    lateinit var viewModel: PullRequestViewModel
+    /*@Inject
+    lateinit var viewModel: PullRequestViewModel*/
+
+    private val viewModel: PullRequestViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setupDagger()
+       // setupDagger()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -46,10 +51,10 @@ class MainActivity : AppCompatActivity() {
         tryAgainClickListener()
     }
 
-    private fun setupDagger() {
+   /* private fun setupDagger() {
         (application as MyApplication).appComponent
             .activityComponent().create().inject(this)
-    }
+    }*/
 
     private fun tryAgainClickListener() {
         binding.errorLayout.tryAgainButton.setOnClickListener {

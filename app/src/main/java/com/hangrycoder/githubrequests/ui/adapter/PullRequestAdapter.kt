@@ -13,7 +13,9 @@ import com.hangrycoder.githubrequests.R
 import com.hangrycoder.githubrequests.databinding.PullRequestItemBinding
 import com.hangrycoder.githubrequests.models.PullRequest
 import com.hangrycoder.githubrequests.utils.DateUtil
+import dagger.hilt.android.scopes.ActivityScoped
 
+@ActivityScoped
 class PullRequestAdapter(diffCallback: DiffUtil.ItemCallback<PullRequest>) :
     PagingDataAdapter<PullRequest, PullRequestAdapter.PullRequestViewHolder>(diffCallback) {
 

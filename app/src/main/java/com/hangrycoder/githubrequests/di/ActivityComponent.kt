@@ -3,8 +3,9 @@ package com.hangrycoder.githubrequests.di
 import com.hangrycoder.githubrequests.ui.MainActivity
 import dagger.Subcomponent
 
-@ActivityScope
-@Subcomponent(modules = [ActivityModule::class])
+//@ActivityScope
+//@Subcomponent(modules = [ActivityModule::class])
+/*
 interface ActivityComponent {
     @Subcomponent.Factory
     interface Factory {
@@ -12,4 +13,4 @@ interface ActivityComponent {
     }
 
     fun inject(activity: MainActivity)
-}
+}*/
